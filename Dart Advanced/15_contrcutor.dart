@@ -2,7 +2,7 @@ late String name;
 void main (){
    name= "Nouman";
    Mathematics math = Mathematics(50,2);
-   Mathematics maths = Mathematics.namedConstructor();
+  //  Mathematics maths = Mathematics.namedConstructor();
   
    print(math.add());
    print(math.sub());
