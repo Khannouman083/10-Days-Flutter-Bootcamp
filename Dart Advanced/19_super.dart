@@ -1,5 +1,6 @@
 void main (){
    MobilePhone phone = MobilePhone("s23", "Samsung");
+   phone.watch();
 }
 
 class Electronics {
