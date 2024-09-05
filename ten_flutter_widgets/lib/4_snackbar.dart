@@ -32,9 +32,14 @@ class _mySnackbarState extends State<mySnackbar> {
                        onPressed: (){}),
                    backgroundColor: Colors.red,
                      content: Text("This is an error")));
-              }, child: Text("Elevated Button",style: TextStyle(
+
+              },
+
+              child: Text("Elevated Button",style: TextStyle(
               color: Colors.white
-          ))),
+          )
+          )
+          ),
         ),
       ),
     );

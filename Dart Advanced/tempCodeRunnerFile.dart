@@ -1,2 +1,0 @@
-
-    print("Mobile is watched");

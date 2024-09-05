@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 
 class TextformMy extends StatefulWidget {
@@ -16,44 +18,47 @@ class _TextformMyState extends State<TextformMy> {
         title: Text("Text Form Field"),
         backgroundColor: Colors.red,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                hintText: "Email",
-                prefixIcon: Icon(Icons.email),
-                border: OutlineInputBorder()
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Email",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder()
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                hintText: "Password",
-                prefixIcon: Icon(Icons.lock),
-                border:  OutlineInputBorder()
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Password",
+                  prefixIcon: Icon(Icons.lock),
+                  border:  OutlineInputBorder()
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Container(height: 50,width: 300,
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: WidgetStateProperty.all(Colors.red)
-              ),
-                onPressed: (){},
-                child: Text("Log in")),
-          )
-        ],
+            SizedBox(
+              height: 40,
+            ),
+            Container(height: 50,width: 300,
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.red)
+                ),
+                  onPressed: (){},
+                  child: Text("Log in")),
+            ),
+
+          ],
+        ),
       ),
     );
   }

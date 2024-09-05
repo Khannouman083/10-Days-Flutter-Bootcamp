@@ -16,18 +16,33 @@ class _myImagesState extends State<myImages> {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Center(
-        child: 
-        Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
 
-          height: 200,
-          width: 200,
-          decoration: BoxDecoration(
-              color: Colors.red,
-            image: DecorationImage(image: AssetImage("mypic.jpg"),
-                fit:BoxFit.cover)
-          ),
+            // Container(
+            //   height: 200,
+            //   width: 200,
+            //   decoration: BoxDecoration(
+            //     color: Colors.red,
+            //     image: DecorationImage(image: NetworkImage("https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"),
+            //     fit: BoxFit.cover)
+            //   ),
+            // )
+            // SizedBox(
+            //   height: 20,
+            // ),
+           Container(
+             height: 500,
+             width: 200,
+             decoration: BoxDecoration(
+               color: Colors.blue,
+               image: DecorationImage(image: AssetImage("mypic.jpg"),
+               fit: BoxFit.cover)
+             ),
+           )
+          ],
         ),
-        
       ),
     );
   }
