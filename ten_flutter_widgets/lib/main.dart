@@ -31,7 +31,7 @@ class myApp extends StatelessWidget {
         primaryColor: Colors.red,
         brightness: Brightness.light,
       ),
-      home: mySplashScreen(),
+      home: myTabBar(),
     );
   }
 }
