@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:rest_apis/models/photoModel.dart';
 import 'package:http/http.dart' as http;
-import 'package:rest_apis/models/PostModel.dart';
 class photoScreen extends StatefulWidget {
   const photoScreen({super.key});
 
@@ -11,47 +11,49 @@ class photoScreen extends StatefulWidget {
 }
 
 class _photoScreenState extends State<photoScreen> {
-  List<PostModel> postList =[];
-  Future<List<PostModel>> getPostApi () async {
-    final response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
+  
+  List<Photomodel> photoList = [];
+  Future<List<Photomodel>> getPhotosApi () async {
+    final response = await http.get(Uri.parse("https://jsonplaceholder.typicode.com/photos"));
     var data = jsonDecode(response.body.toString());
-    if(response.statusCode==200){
+    if(response.statusCode == 200){
       for(Map i in data){
-        postList.add(PostModel.fromJson(i));
+        Photomodel photos = Photomodel(id: i["id"], title: i["title"], url: i["url"]);
+        photoList.add(photos);
       }
-      return postList;
+      return photoList;
     }
     else {
-      return postList;
+      return photoList;
     }
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Rest Apis"),
+        title: Text("Photo Screen"),
         backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body:
-        FutureBuilder(
-            future: getPostApi(),
-            builder: (context, snapshot){
-              return ListView.builder(
-                  itemCount: postList.length,
-                  itemBuilder: (context, index){
-                    return Card(
-                      color: Colors.green,
-                        child: Column(
-                      children: [
-                        Text("Title:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                        Text(postList[index].title.toString()),
-                        Text("Description:", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
-                        Text(postList[index].body.toString()),
+        actions: [
 
-                      ],
-                    ));
-                  });
-            })
+          Icon(Icons.logout),
+          SizedBox(width: 20,),
+        ],
+      ),
+      body: FutureBuilder(
+          future: getPhotosApi(),
+          builder: (context,AsyncSnapshot<List<Photomodel>> snapshot){
+            return ListView.builder(
+                itemCount: photoList.length,
+                itemBuilder: (context, index){
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(snapshot.data![index].url.toString()),
+                    ),
+                    title: Text("Person "+snapshot.data![index].id.toString()),
+                    subtitle: Text(snapshot.data![index].title.toString()),
+                  );
+                });
+          }),
     );
   }
 }

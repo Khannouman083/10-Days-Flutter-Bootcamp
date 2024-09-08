@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rest_apis/photoScreen.dart';
+import 'package:rest_apis/postScreen.dart';
+import 'package:rest_apis/signUp_Screen.dart';
+import 'package:rest_apis/userScreen.dart';
 
 void main (){
   runApp(myApp());
@@ -22,7 +25,7 @@ class _myAppState extends State<myApp> {
        primaryColor: Colors.green,
        brightness: Brightness.light
       ),
-      home: photoScreen(),
+      home: signUp(),
     );
   }
 }
