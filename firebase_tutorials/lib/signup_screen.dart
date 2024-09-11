@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_tutorials/loginScreen.dart';
 import 'package:firebase_tutorials/my_button.dart';
+import 'package:firebase_tutorials/postScreen.dart';
+import 'package:firebase_tutorials/utils.dart';
 import 'package:flutter/material.dart';
 
 class signup extends StatefulWidget {
@@ -63,7 +65,8 @@ class _signupState extends State<signup> {
                      auth.createUserWithEmailAndPassword(
                          email: emailController.text.toString(),
                          password: passwordController.text.toString()).then((onValue){
-                       print(onValue.toString());
+                       Utils().toastMessage("Register Successfully", context);
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>postScreen()));
                      }).catchError((onError){
                        print(onError.toString());
                      });

@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_tutorials/fogotPass.dart';
 import 'package:firebase_tutorials/my_button.dart';
@@ -50,6 +49,7 @@ class _loginState extends State<login> {
                 ),
                 const SizedBox(height: 20,),
                 TextFormField(
+                  obscureText: true,
                   controller: passwordController,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.key),
@@ -89,6 +89,8 @@ class _loginState extends State<login> {
           ),
         ),
       ),
+
     );
+
   }
 }
