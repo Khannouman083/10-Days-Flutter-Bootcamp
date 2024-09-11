@@ -14,7 +14,7 @@ class postScreen extends StatefulWidget {
 
 class _postScreenState extends State<postScreen> {
   final searchController = TextEditingController();
-  final auth = FirebaseAuth.instance;
+    final auth = FirebaseAuth.instance;
   DatabaseReference dref = FirebaseDatabase.instance.ref("Post");
   @override
   Widget build(BuildContext context) {
@@ -78,10 +78,32 @@ class _postScreenState extends State<postScreen> {
                 query: dref,
                 itemBuilder: (context, snapshot, animation, index){
                   String title = snapshot.child("title").value.toString();
+                  String id = snapshot.child("id").value.toString();
                   if(searchController.text.isEmpty){
                     return ListTile(
                       title: Text(snapshot.child("title").value.toString()),
                       subtitle: Text(snapshot.child("id").value.toString()),
+                      trailing: PopupMenuButton(
+                          icon: Icon(Icons.more_vert),
+                          itemBuilder: (context)=>[
+                            PopupMenuItem(
+                                child: ListTile(
+                                  leading: Icon(Icons.edit),
+                                  title: Text("Edit"),
+                                  onTap: (){
+                                    myDialog(title,snapshot.child("id").value.toString());
+                                  },
+                                )),
+                            PopupMenuItem(
+                                child: ListTile(
+                                  leading: Icon(Icons.delete),
+                                  title: Text("Delete"),
+                                  onTap: (){
+                                    Navigator.pop(context);
+                                    dref.child(id).remove();
+                                  },
+                                )),
+                          ]),
                     );
                   }
                   else if(title.toLowerCase().contains(searchController.text.toLowerCase())){
@@ -108,5 +130,31 @@ class _postScreenState extends State<postScreen> {
       },
         child: Icon(Icons.add),),
     );
+  }
+
+  Future<void> myDialog (String title, String id) async {
+    final editController = TextEditingController();
+    editController.text = title;
+    return showDialog(
+        context: context,
+        builder: (context){
+      return AlertDialog(
+        title: Text("Update"),
+        content: TextField(
+          controller: editController,
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+            dref.child(id).update({
+              'title' : editController.text
+            });
+          }, child: Text("Update")),
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text("Cancel")),
+        ],
+      );
+        });
   }
 }

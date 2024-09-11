@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_tutorials/FirestorepostScreen.dart';
 import 'package:firebase_tutorials/fogotPass.dart';
 import 'package:firebase_tutorials/my_button.dart';
 import 'package:firebase_tutorials/postScreen.dart';
@@ -75,7 +76,7 @@ class _loginState extends State<login> {
                           email: emailController.text.toString(),
                           password: passwordController.text.toString())..then((onValue){
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Log in Succesfully")));
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>postScreen()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>fireStorePost()));
                       }).catchError((onError){
                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(onError.toString())));
                       });
