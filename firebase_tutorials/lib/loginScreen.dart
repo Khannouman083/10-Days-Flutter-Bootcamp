@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_tutorials/FirestorepostScreen.dart';
 import 'package:firebase_tutorials/fogotPass.dart';
 import 'package:firebase_tutorials/my_button.dart';
-import 'package:firebase_tutorials/postScreen.dart';
 import 'package:firebase_tutorials/signup_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -58,14 +57,14 @@ class _loginState extends State<login> {
                       border: OutlineInputBorder()
                   ),
                 ),
-                SizedBox(height: 5,),
+                const SizedBox(height: 5,),
                 Align(
                     alignment: Alignment.bottomRight,
                     child: InkWell(
                         onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>forgotPass()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>const forgotPass()));
                         },
-                        child: Text("Forgot Password?", style: TextStyle(fontSize: 15),))),
+                        child: const Text("Forgot Password?", style: TextStyle(fontSize: 15),))),
                 const SizedBox(
                   height: 30,
                 ),
@@ -75,8 +74,8 @@ class _loginState extends State<login> {
                       auth.signInWithEmailAndPassword(
                           email: emailController.text.toString(),
                           password: passwordController.text.toString())..then((onValue){
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Log in Succesfully")));
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>fireStorePost()));
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Log in Succesfully")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>const fireStorePost()));
                       }).catchError((onError){
                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(onError.toString())));
                       });

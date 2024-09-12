@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_tutorials/my_button.dart';
 import 'package:firebase_tutorials/utils.dart';
 import 'package:flutter/material.dart';
@@ -15,31 +14,31 @@ class addFirestorePost extends StatefulWidget {
 class _addFirestorePostState extends State<addFirestorePost> {
   final postController = TextEditingController();
   final auth = FirebaseAuth.instance;
-  final fref = FirebaseFirestore.instance.collection("Post");
+  final fref = FirebaseFirestore.instance.collection("Nouman");
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: Text("Add Firestore Post"),
+        title: const Text("Add Firestore Post"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
               maxLines: 4,
               controller: postController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   hintText: "Add post",
                   border: OutlineInputBorder()
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             myButton(
                 title: "Add Post",
                 onButtonpress: (){

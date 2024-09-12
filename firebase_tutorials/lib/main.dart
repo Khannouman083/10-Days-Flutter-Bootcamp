@@ -1,7 +1,6 @@
 import "package:firebase_core/firebase_core.dart";
 import "package:firebase_tutorials/firebase_options.dart";
 import "package:firebase_tutorials/signup_screen.dart";
-import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
 
 void main() async{

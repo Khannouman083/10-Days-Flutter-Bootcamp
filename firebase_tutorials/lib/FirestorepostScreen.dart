@@ -1,11 +1,6 @@
-import 'dart:js_interop';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:firebase_tutorials/addFirestorePost.dart';
-import 'package:firebase_tutorials/addpost.dart';
 import 'package:firebase_tutorials/loginScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,30 +12,43 @@ class fireStorePost extends StatefulWidget {
 }
 
 class _fireStorePostState extends State<fireStorePost> {
+  final auth = FirebaseAuth.instance;
+  final fref = FirebaseFirestore.instance.collection("Nouman").snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("FireStore Post Screen"),
+        title: const Text("FireStore Post Screen"),
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
           InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const login()));
               },
-              child: Icon(Icons.logout)),
-          SizedBox(width: 20,)
+              child: const Icon(Icons.logout)),
+          const SizedBox(width: 20,)
         ],
       ),
-      body: Container(),
+      body: StreamBuilder<QuerySnapshot>(
+          stream: fref,
+          builder: (context,AsyncSnapshot<QuerySnapshot> snapshot){
+            return ListView.builder(
+                itemCount: snapshot.data!.docs.length,
+                itemBuilder: (context, index){
+                  return ListTile(
+                    title: Text(snapshot.data!.docs[index]['title']),
+                    subtitle: Text(snapshot.data!.docs[index]['id']),
+                  );
+                });
+          }),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>addFirestorePost()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>const addFirestorePost()));
 
         },
-        child: Icon(Icons.add),),
+        child: const Icon(Icons.add),),
     );
   }
 }

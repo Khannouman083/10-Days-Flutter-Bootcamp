@@ -34,7 +34,7 @@ class _signupState extends State<signup> {
                 Container(
                   height: 130,
                   width: 150,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(image: AssetImage('assets/logo.png'))
                   ),
                 ),
@@ -66,7 +66,7 @@ class _signupState extends State<signup> {
                          email: emailController.text.toString(),
                          password: passwordController.text.toString()).then((onValue){
                        Utils().toastMessage("Register Successfully", context);
-                       Navigator.push(context, MaterialPageRoute(builder: (context)=>postScreen()));
+                       Navigator.push(context, MaterialPageRoute(builder: (context)=>const postScreen()));
                      }).catchError((onError){
                        print(onError.toString());
                      });

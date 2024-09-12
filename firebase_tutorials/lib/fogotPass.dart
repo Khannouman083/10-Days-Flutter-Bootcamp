@@ -18,7 +18,7 @@ class _forgotPassState extends State<forgotPass> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Forgot Password"),
+        title: const Text("Forgot Password"),
         backgroundColor: Colors.yellow,
       ),
       body:  Padding(
@@ -33,7 +33,7 @@ class _forgotPassState extends State<forgotPass> {
                   border: OutlineInputBorder()
               ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(height: 30,),
             myButton(
                 title: "Send Email",
                 onButtonpress: (){

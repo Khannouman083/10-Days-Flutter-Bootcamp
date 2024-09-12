@@ -21,15 +21,15 @@ class _postScreenState extends State<postScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text("Post Screen"),
+        title: const Text("Post Screen"),
         backgroundColor: Theme.of(context).primaryColor,
         actions: [
           InkWell(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>login()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>const login()));
               },
-              child: Icon(Icons.logout)),
-          SizedBox(width: 20,)
+              child: const Icon(Icons.logout)),
+          const SizedBox(width: 20,)
         ],
       ),
       body:
@@ -61,7 +61,7 @@ class _postScreenState extends State<postScreen> {
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
               controller: searchController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Search",
                 suffixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
@@ -84,20 +84,20 @@ class _postScreenState extends State<postScreen> {
                       title: Text(snapshot.child("title").value.toString()),
                       subtitle: Text(snapshot.child("id").value.toString()),
                       trailing: PopupMenuButton(
-                          icon: Icon(Icons.more_vert),
+                          icon: const Icon(Icons.more_vert),
                           itemBuilder: (context)=>[
                             PopupMenuItem(
                                 child: ListTile(
-                                  leading: Icon(Icons.edit),
-                                  title: Text("Edit"),
+                                  leading: const Icon(Icons.edit),
+                                  title: const Text("Edit"),
                                   onTap: (){
                                     myDialog(title,snapshot.child("id").value.toString());
                                   },
                                 )),
                             PopupMenuItem(
                                 child: ListTile(
-                                  leading: Icon(Icons.delete),
-                                  title: Text("Delete"),
+                                  leading: const Icon(Icons.delete),
+                                  title: const Text("Delete"),
                                   onTap: (){
                                     Navigator.pop(context);
                                     dref.child(id).remove();
@@ -125,10 +125,10 @@ class _postScreenState extends State<postScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).primaryColor,
         onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>addPost()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>const addPost()));
 
       },
-        child: Icon(Icons.add),),
+        child: const Icon(Icons.add),),
     );
   }
 
@@ -139,7 +139,7 @@ class _postScreenState extends State<postScreen> {
         context: context,
         builder: (context){
       return AlertDialog(
-        title: Text("Update"),
+        title: const Text("Update"),
         content: TextField(
           controller: editController,
         ),
@@ -149,10 +149,10 @@ class _postScreenState extends State<postScreen> {
             dref.child(id).update({
               'title' : editController.text
             });
-          }, child: Text("Update")),
+          }, child: const Text("Update")),
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text("Cancel")),
+          }, child: const Text("Cancel")),
         ],
       );
         });

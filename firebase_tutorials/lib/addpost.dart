@@ -20,24 +20,24 @@ class _addPostState extends State<addPost> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.yellow,
-        title: Text("Add Post"),
+        title: const Text("Add Post"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             TextFormField(
               maxLines: 4,
               controller: postController,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: "Add post",
                 border: OutlineInputBorder()
               ),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             myButton(
                 title: "Add Post",
                 onButtonpress: (){
