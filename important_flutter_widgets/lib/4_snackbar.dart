@@ -1,44 +1,57 @@
 import 'package:flutter/material.dart';
 
-class mySnackbar extends StatefulWidget {
-  const mySnackbar({super.key});
-
-  @override
-  State<mySnackbar> createState() => _mySnackbarState();
+void main() {
+  runApp(const MyApp());
 }
 
-class _mySnackbarState extends State<mySnackbar> {
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final GlobalKey<ScaffoldMessengerState> messengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.red,
-        title: Text("Snackbar"),
-      ),
-      body: Center(
-        child: Container(
-          height: 50,
-          width: 200,
-          child: ElevatedButton(
-              style: ButtonStyle(
-                  backgroundColor: WidgetStateProperty.all(Colors.teal)
-              ),
-              onPressed: (){
-                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                   duration: Duration(milliseconds: 3000),
-                   behavior: SnackBarBehavior.floating,
-                   action: SnackBarAction(
-                       label: "Undo",
-                       onPressed: (){}),
-                   backgroundColor: Colors.red,
-                     content: Text("This is an error")));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
 
+      // 👇 THIS FIXES YOUR ERROR
+      scaffoldMessengerKey: messengerKey,
+
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Day 2"),
+          backgroundColor: Colors.red,
+        ),
+        body: Center(
+          child: Container(
+            height: 50,
+            width: 300,
+            decoration: const BoxDecoration(
+              color: Colors.amber,
+            ),
+            child: TextButton(
+              onPressed: () {
+                messengerKey.currentState!.showSnackBar(
+                  SnackBar(
+                    duration: const Duration(milliseconds: 500),
+                    behavior: SnackBarBehavior.floating,
+                    content: const Text("This is an error"),
+                    backgroundColor: Colors.red,
+                    action: SnackBarAction(
+                      label: "Undo",
+                      onPressed: () {},
+                    ),
+                  ),
+                );
               },
-
-              child: Text("Elevated Button",style: TextStyle(
-              color: Colors.white
-          )
-          )
+              child: const Text("Log In"),
+            ),
           ),
         ),
       ),
