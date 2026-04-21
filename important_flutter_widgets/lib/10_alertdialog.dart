@@ -1,43 +1,64 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-class myAlertDialog extends StatefulWidget {
-  const myAlertDialog({super.key});
-
-  @override
-  State<myAlertDialog> createState() => _myAlertDialogState();
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: MyDismissible(),
+  ));
 }
 
-class _myAlertDialogState extends State<myAlertDialog> {
+class MyDismissible extends StatefulWidget {
+  const MyDismissible({super.key});
+
+  @override
+  State<MyDismissible> createState() => _MyDismissibleState();
+}
+
+class _MyDismissibleState extends State<MyDismissible> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text("Alert Dialog"),
+        title: const Text("Alert Dialog"),
       ),
       body: Center(
         child: ElevatedButton(
           style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(Colors.green)
+            backgroundColor: WidgetStateProperty.all(Colors.green),
           ),
-            onPressed: (){
-               showDialog(
-                   context: context,
-                   builder: (context){
-                     return AlertDialog(
-                       // backgroundColor: Colors.grey,
-                       title: Text("Alert Dialog"),
-                       content: Text("hello i am Nouman and this is an alert dialog"),
-                       actions: [
-                         TextButton(onPressed: (){}, child: Text("Approve")),
-                         TextButton(onPressed: (){
-                           Navigator.pop(context);
-                         }, child: Text("Cancel"))
-                       ],
-                     );
-                   });
-            },
-            child: Text("Alert Dialog", style: TextStyle(color: Colors.white),)),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text("Alert Dialog"),
+                  content: const Text(
+                    "Hello, I am Nouman and this is an alert dialog",
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Approve"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Cancel"),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: const Text(
+            "Alert Dialog",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
     );
   }
